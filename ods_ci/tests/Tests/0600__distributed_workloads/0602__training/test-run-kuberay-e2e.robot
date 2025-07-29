@@ -21,7 +21,7 @@ Run TestRayJob test
 
 Run TestRayJobWithClusterSelector test
     [Documentation]    Run Go E2E test: TestRayJobWithClusterSelector
-    [Tags]  Sanity
+    [Tags]  qqqq
     ...     DistributedWorkloads
     ...     TrainingRay
     ...     Kuberay
