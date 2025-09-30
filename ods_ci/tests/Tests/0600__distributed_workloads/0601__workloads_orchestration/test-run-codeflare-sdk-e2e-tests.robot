@@ -13,7 +13,7 @@ Resource          ../../../../tests/Resources/Page/DistributedWorkloads/Distribu
 Run TestRayClusterSDKOauth test with Python 3.11
     [Documentation]    Run Python E2E test: TestRayClusterSDKOauth
     [Tags]
-    ...     Tier1
+    ...     ccc
     ...     DistributedWorkloads
     ...     WorkloadsOrchestration
     ...     Codeflare-sdk
@@ -22,7 +22,7 @@ Run TestRayClusterSDKOauth test with Python 3.11
 Run TestRayLocalInteractiveOauth test with Python 3.11
     [Documentation]    Run Python E2E test: TestRayLocalInteractiveOauth
     [Tags]
-    ...     Tier1
+    ...     ccc
     ...     DistributedWorkloads
     ...     WorkloadsOrchestration
     ...     Codeflare-sdk
@@ -31,7 +31,7 @@ Run TestRayLocalInteractiveOauth test with Python 3.11
 Run TestHeterogenousClustersOauth
     [Documentation]    Run Python E2E test: TestHeterogenousClustersOauth (workaround for 2.15)
     [Tags]
-    ...     Tier1
+    ...     ccc
     ...     DistributedWorkloads
     ...     WorkloadsOrchestration
     ...     HeterogeneousCluster
