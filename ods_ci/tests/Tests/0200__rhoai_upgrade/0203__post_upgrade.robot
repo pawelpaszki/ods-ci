@@ -212,7 +212,7 @@ Verify Ray Cluster Exists And Monitor Workload Metrics By Submitting Ray Job Aft
     ${LOCAL_QUEUE}      Set Variable        local-queue-mnist
     ${JOB_NAME}     Set Variable        mnist
     Run Codeflare-SDK Test
-    ...    upgrade
+    ...    ccc
     ...    raycluster_sdk_upgrade_test.py::TestMnistJobSubmit
     ...    3.11
     ...    ${RAY_CUDA_IMAGE_3.11}
