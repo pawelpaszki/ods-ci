@@ -323,7 +323,7 @@ Disable appwrapper in Codeflare operator
 Setup Kueue Batch User RoleBinding
     [Documentation]    Apply the kueue-batch-user-rolebinding ClusterRoleBinding as admin
     Log To Console    "Applying kueue-batch-user-rolebinding ClusterRoleBinding"
-    ${result} =    Run Process    oc apply -f ../../Files/kueue-batch-user-rolebinding.yaml
+    ${result} =    Run Process    oc apply -f ../../Resources/Files/kueue-batch-user-rolebinding.yaml
     ...    shell=true
     ...    stderr=STDOUT
     Log To Console    ${result.stdout}
@@ -334,7 +334,7 @@ Setup Kueue Batch User RoleBinding
 Teardown Kueue Batch User RoleBinding
     [Documentation]    Remove the kueue-batch-user-rolebinding ClusterRoleBinding as admin
     Log To Console    "Removing kueue-batch-user-rolebinding ClusterRoleBinding"
-    ${result} =    Run Process    oc delete -f ../../Files/kueue-batch-user-rolebinding.yaml
+    ${result} =    Run Process    oc delete -f ../../Resources/Files/kueue-batch-user-rolebinding.yaml
     ...    shell=true
     ...    stderr=STDOUT
     Log To Console    ${result.stdout}
