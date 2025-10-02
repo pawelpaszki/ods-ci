@@ -211,11 +211,13 @@ Prepare DistributedWorkloads Integration Test Suite
     Log To Console    "Log back as cluster admin"
     Login To OCP Using API    ${OCP_ADMIN_USER.USERNAME}    ${OCP_ADMIN_USER.PASSWORD}
     RHOSi Setup
+    Setup Kueue Batch User RoleBinding
 
 Teardown DistributedWorkloads Integration Test Suite
     [Documentation]    Teardown DistributedWorkloads Integration Test Suite
     Log To Console    "Log back as cluster admin"
     Login To OCP Using API    ${OCP_ADMIN_USER.USERNAME}    ${OCP_ADMIN_USER.PASSWORD}
+    Teardown Kueue Batch User RoleBinding
     Log To Console    "Removing test binaries"
     Remove File        ${ODH_BINARY_NAME}
     RHOSi Teardown
@@ -317,3 +319,25 @@ Disable appwrapper in Codeflare operator
     ...    shell=true
     ...    stderr=STDOUT
     Log To Console    ${result.stdout}
+
+Setup Kueue Batch User RoleBinding
+    [Documentation]    Apply the kueue-batch-user-rolebinding ClusterRoleBinding as admin
+    Log To Console    "Applying kueue-batch-user-rolebinding ClusterRoleBinding"
+    ${result} =    Run Process    oc apply -f ../../Resources/kueue-batch-user-rolebinding.yaml
+    ...    shell=true
+    ...    stderr=STDOUT
+    Log To Console    ${result.stdout}
+    IF    ${result.rc} != 0
+        FAIL    Unable to apply kueue-batch-user-rolebinding ClusterRoleBinding
+    END
+
+Teardown Kueue Batch User RoleBinding
+    [Documentation]    Remove the kueue-batch-user-rolebinding ClusterRoleBinding as admin
+    Log To Console    "Removing kueue-batch-user-rolebinding ClusterRoleBinding"
+    ${result} =    Run Process    oc delete -f ../../Resources/kueue-batch-user-rolebinding.yaml
+    ...    shell=true
+    ...    stderr=STDOUT
+    Log To Console    ${result.stdout}
+    IF    ${result.rc} != 0
+        Log To Console    "Warning: Unable to delete kueue-batch-user-rolebinding ClusterRoleBinding (may not exist)"
+    END
