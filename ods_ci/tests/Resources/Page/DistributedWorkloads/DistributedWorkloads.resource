@@ -323,6 +323,26 @@ Disable appwrapper in Codeflare operator
 Setup Kueue Batch User RoleBinding
     [Documentation]    Apply the kueue-batch-user-rolebinding ClusterRoleBinding as admin
     Log To Console    "Applying kueue-batch-user-rolebinding ClusterRoleBinding"
+
+    # Debug: Show current working directory
+    ${pwd_result} =    Run Process    pwd
+    ...    shell=true
+    ...    stderr=STDOUT
+    Log To Console    "Current working directory: ${pwd_result.stdout}"
+
+    # Debug: Check if the file exists at the expected path
+    ${file_check} =    Run Process    ls -la ../../Resources/Files/kueue-batch-user-rolebinding.yaml
+    ...    shell=true
+    ...    stderr=STDOUT
+    Log To Console    "File check result: ${file_check.stdout}"
+    Log To Console    "File check return code: ${file_check.rc}"
+
+    # Debug: List contents of Resources/Files directory
+    ${list_result} =    Run Process    ls -la ../../Resources/Files/
+    ...    shell=true
+    ...    stderr=STDOUT
+    Log To Console    "Contents of ../../Resources/Files/: ${list_result.stdout}"
+
     ${result} =    Run Process    oc apply -f ../../Resources/Files/kueue-batch-user-rolebinding.yaml
     ...    shell=true
     ...    stderr=STDOUT
@@ -334,6 +354,13 @@ Setup Kueue Batch User RoleBinding
 Teardown Kueue Batch User RoleBinding
     [Documentation]    Remove the kueue-batch-user-rolebinding ClusterRoleBinding as admin
     Log To Console    "Removing kueue-batch-user-rolebinding ClusterRoleBinding"
+
+    # Debug: Show current working directory
+    ${pwd_result} =    Run Process    pwd
+    ...    shell=true
+    ...    stderr=STDOUT
+    Log To Console    "Teardown - Current working directory: ${pwd_result.stdout}"
+
     ${result} =    Run Process    oc delete -f ../../Resources/Files/kueue-batch-user-rolebinding.yaml
     ...    shell=true
     ...    stderr=STDOUT
