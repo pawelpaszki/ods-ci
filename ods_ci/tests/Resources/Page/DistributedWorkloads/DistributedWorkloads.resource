@@ -118,7 +118,9 @@ Cleanup Codeflare-SDK Setup
 Create Test Namespace For Codeflare Test
     [Documentation]    Create the test namespace as admin for codeflare tests
     Log To Console    "Creating test namespace test-ns-rayupgrade as admin"
-    ${result} =    Run Process    oc create namespace test-ns-rayupgrade --dry-run=client -o yaml | oc apply -f -    shell=true    stderr=STDOUT
+    ${result} =    Run Process    oc create namespace test-ns-rayupgrade --dry-run=client -o yaml | oc apply -f -
+    ...    shell=true
+    ...    stderr=STDOUT
     Log To Console    ${result.stdout}
     IF    ${result.rc} != 0
         Log To Console    "Warning: Unable to create namespace test-ns-rayupgrade (may already exist)"
