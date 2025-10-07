@@ -209,7 +209,7 @@ Verify Distributed Workload Metrics Resources By Creating Ray Cluster Workload
     ...     ${memory_requested}     RayCluster      ${JOB_NAME}
 
     [Teardown]      Run Keywords        Cleanup Codeflare-SDK Setup     AND
-    ...     Run Keyword If Test Failed      Codeflare Upgrade Tests Teardown        ${PRJ_UPGRADE}      ${DW_PROJECT_CREATED}       # robocop: disable:line-too-long
+    ...     Run Keyword If Test Failed      Codeflare Upgrade Tests Teardown        test-ns-rayupgrade      ${DW_PROJECT_CREATED}       # robocop: disable:line-too-long
 
 Run Training Operator KFTO Setup PyTorchJob Test Use Case with NVIDIA CUDA image (PyTorch 2_5_1)
     [Documentation]    Run Training Operator KFTO Setup PyTorchJob Test Use Case with NVIDIA CUDA image (PyTorch 2_5_1)
