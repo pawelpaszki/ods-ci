@@ -6,9 +6,9 @@ Resource          ../../../../tasks/Resources/RHODS_OLM/install/oc_install.robot
 
 
 *** Variables ***
-${CODEFLARE-SDK-RELEASE-TAG}             v0.31.1
+${CODEFLARE-SDK-RELEASE-TAG}             v0.32.0
 ${CODEFLARE-SDK_DIR}                     codeflare-sdk
-${CODEFLARE-SDK_REPO_URL}                %{CODEFLARE-SDK_REPO_URL=https://github.com/project-codeflare/codeflare-sdk.git}
+${CODEFLARE-SDK_REPO_URL}                %{CODEFLARE-SDK_REPO_URL=https://github.com/pawelpaszki/codeflare-sdk.git}
 ${DISTRIBUTED_WORKLOADS_RELEASE_ASSETS}  https://github.com/opendatahub-io/distributed-workloads/releases/latest/download
 # Corresponds to quay.io/modh/ray:2.47.1-py312-cu128
 ${RAY_CUDA_IMAGE_3.12}                   quay.io/modh/ray@sha256:fb6f207de63e442c67bb48955cf0584f3704281faf17b90419cfa274fdec63c5
