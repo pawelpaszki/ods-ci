@@ -101,7 +101,7 @@ Verify Model Can Be Deployed For Upgrade
     # robocop: off=too-long-test-case
     # robocop: off=too-many-calls-in-test-case
     [Documentation]    Verify Model Can Be Deployed Via cli For Upgrade
-    [Tags]                  ppp    ModelServing    ModelServer
+    [Tags]                  Upgrade    ModelServing    ModelServer
     ${test_namespace}=         Set Variable    ovmsmodel-upgrade
     ${inference_input}=        Set Variable    @tests/Resources/Files/modelmesh-mnist-input.json
     ${exp_inference_output}=   Set Variable    {"model_name":"ovms-model","model_version":"1","outputs":[{"name":"Plus214_Output_0","datatype":"FP32","shape":[1,10],"data":[-8.233053,-7.7497034,-3.4236815,12.3630295,-12.079103,17.266596,-10.570976,0.7130762,3.321715,1.3621228]}]}    # robocop: off=line-too-long
@@ -158,7 +158,7 @@ Verify Distributed Workload Metrics Resources By Creating Ray Cluster Workload
     # robocop: off=too-long-test-case
     # robocop: off=too-many-calls-in-test-case
     [Documentation]    Creates the Ray Cluster and verify resource usage
-    [Tags]      Upgrade    WorkloadOrchestration
+    [Tags]      ppp    WorkloadOrchestration
     [Setup]     Prepare Codeflare-SDK Upgrade Test Setup
     ${PRJ_UPGRADE}=     Set Variable        test-ns-rayupgrade
     ${JOB_NAME}=        Set Variable        mnist
