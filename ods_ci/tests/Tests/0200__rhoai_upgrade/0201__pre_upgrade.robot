@@ -151,7 +151,7 @@ Verify Distributed Workload Metrics Resources By Creating Ray Cluster Workload
     # robocop: off=too-long-test-case
     # robocop: off=too-many-calls-in-test-case
     [Documentation]    Creates the Ray Cluster and verify resource usage
-    [Tags]      Upgrade
+    [Tags]      pppp
     [Setup]     Prepare Codeflare-SDK Upgrade Test Setup
     ${PRJ_UPGRADE}=     Set Variable        test-ns-rayupgrade
     ${JOB_NAME}=        Set Variable        mnist
