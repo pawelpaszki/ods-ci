@@ -5,10 +5,10 @@ Library          Process
 
 
 *** Variables ***
-${CODEFLARE-SDK-RELEASE-TAG}             v0.23.1
+${CODEFLARE-SDK-RELEASE-TAG}             v0.23.1-fix
 ${CODEFLARE-SDK-RELEASE-TAG-3.9}         adjustments-release-0.21.1
 ${CODEFLARE-SDK_DIR}                     codeflare-sdk
-${CODEFLARE-SDK_REPO_URL}                %{CODEFLARE-SDK_REPO_URL=https://github.com/project-codeflare/codeflare-sdk.git}
+${CODEFLARE-SDK_REPO_URL}                %{CODEFLARE-SDK_REPO_URL=https://github.com/pawelpaszki/codeflare-sdk.git}
 ${DISTRIBUTED_WORKLOADS_RELEASE_ASSETS}  https://github.com/opendatahub-io/distributed-workloads/releases/download/v2.16.0-RC4-05-12-2024
 # Corresponds to quay.io/modh/ray:2.35.0-py311-cu121
 ${RAY_CUDA_IMAGE_3.11}                   quay.io/modh/ray@sha256:db667df1bc437a7b0965e8031e905d3ab04b86390d764d120e05ea5a5c18d1b4
