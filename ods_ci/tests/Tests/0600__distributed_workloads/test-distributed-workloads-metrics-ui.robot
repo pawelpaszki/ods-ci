@@ -90,7 +90,7 @@ Verify That Not Admin Users Can Access Distributed workload metrics default page
 Verify The Workload Metrics By Submitting Kueue Batch Workload
     [Documentation]    Monitor the workload metrics status and chart details by submitting kueue batch workload
     [Tags]    RHOAIENG-5216
-    ...       Tier1    DistributedWorkloads    TrainingRay    WorkloadsOrchestration
+    ...       ppp    DistributedWorkloads    TrainingRay    WorkloadsOrchestration
     Open Distributed Workload Metrics Home Page
     Select Distributed Workload Project By Name    ${PRJ_TITLE}
     # Submitting kueue batch workload
