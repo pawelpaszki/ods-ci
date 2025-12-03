@@ -164,14 +164,23 @@ Get Memory Requested
 
 Get Requested Resources Tooltip Text
     [Documentation]    retuns tooltip text of requested resources chart
-    Wait Until Element Is Visible    xpath://*[contains(@style, 'fill: var(--pf-v6-chart-tooltip--Fill')]
+    # Give tooltip time to appear after mouse over
+    Sleep    0.5s
+    # Use longer timeout for tooltip visibility (tooltips can be slow to render)
+    Wait Until Element Is Visible    xpath://*[contains(@style, 'fill: var(--pf-v6-chart-tooltip--Fill')]    timeout=15s
+    # Add small delay to ensure tooltip is fully rendered
+    Sleep    0.3s
     ${tooltip_text} =  Get Text    xpath://*[contains(@style, 'fill: var(--pf-v6-chart-tooltip--Fill')]
     RETURN    ${tooltip_text}
 
 Get Memory Requested Tooltip Text
     [Documentation]    retuns tooltip text of Memory requested chart
     Mouse Over    xpath=//*[@aria-label="Memory usage/requested"]
-    Wait Until Element Is Visible    xpath://*[starts-with(@id,'pf-tooltip-')]
+    # Give tooltip time to appear after mouse over
+    Sleep    0.5s
+    Wait Until Element Is Visible    xpath://*[starts-with(@id,'pf-tooltip-')]    timeout=15s
+    # Add small delay to ensure tooltip is fully rendered
+    Sleep    0.3s
     ${memory_usage_hover_data} =  Get Text    xpath://*[starts-with(@id,'pf-tooltip-')]
     @{memory_usage_list}    Split To Lines    ${memory_usage_hover_data}
     ${memory_usage_line}    Set Variable    ${memory_usage_list}[0]
@@ -183,7 +192,11 @@ Get Memory Requested Tooltip Text
 Get CPU Requested Tooltip Text
     [Documentation]    retuns tooltip text of CPU requested chart
     Mouse Over    xpath=//*[@aria-label="CPU usage/requested"]
-    Wait Until Element Is Visible    xpath://*[starts-with(@id,'pf-tooltip-')]
+    # Give tooltip time to appear after mouse over
+    Sleep    0.5s
+    Wait Until Element Is Visible    xpath://*[starts-with(@id,'pf-tooltip-')]    timeout=15s
+    # Add small delay to ensure tooltip is fully rendered
+    Sleep    0.3s
     ${cpu_usage_hover_data} =  Get Text    xpath://*[starts-with(@id,'pf-tooltip-')]
     @{cpu_usage_list}    Split To Lines    ${cpu_usage_hover_data}
     ${cpu_usage_line}    Set Variable    ${cpu_usage_list}[0]
@@ -281,19 +294,23 @@ Check Requested Resources Chart
     Mouse Over    xpath=(//*[name()='svg']//*[local-name()='g']//*[local-name()='path'])[2]
     ${hover_cpu_requested} =  Get Requested Resources Tooltip Text
     Should Match   ${hover_cpu_requested}   Requested by ${project}: ${cpu_requested} cores
+    # Move mouse away to clear tooltip
     Mouse Over    xpath=//*[@id="requested-resources-chart-CPU-ChartLegend-ChartLabel-0"]
+    Sleep    0.5s
 
     Mouse Over    xpath=(//*[name()='svg']//*[local-name()='g']//*[local-name()='path'])[8]
     ${hover_memory_requested} =    Get Requested Resources Tooltip Text
     Should Match   ${hover_memory_requested}   Requested by ${project}: ${memory_requested} GiB
-
+    # Move mouse away to clear tooltip
     Mouse Over    xpath=//*[@id="requested-resources-chart-CPU-ChartLegend-ChartLabel-0"]
+    Sleep    0.5s
 
     Mouse Over    xpath=(//*[name()='svg']//*[local-name()='g']//*[local-name()='path'])[1]
     ${hover_cpu_shared_quota} =    Get Requested Resources Tooltip Text
     Should Match   ${hover_cpu_shared_quota}   Total shared quota: ${CPU_SHARED_QUOTA} cores
-
+    # Move mouse away to clear tooltip
     Mouse Over    xpath=//*[@id="requested-resources-chart-CPU-ChartLegend-ChartLabel-0"]
+    Sleep    0.5s
 
     Mouse Over    xpath=(//*[name()='svg']//*[local-name()='g']//*[local-name()='path'])[7]
     ${hover_memory_shared_quota} =    Get Requested Resources Tooltip Text
@@ -375,9 +392,12 @@ Check Warning Threshold Chart
     Mouse Over    xpath=(//*[name()='svg']//*[local-name()='g']//*[local-name()='path'])[4]
     ${hover_cpu_warning} =  Get Requested Resources Tooltip Text
     Should Match   ${hover_cpu_warning}   Requested resources have surpassed 150%
+    # Move mouse away to clear tooltip
     Mouse Over    xpath=//*[@id="requested-resources-chart-CPU-ChartLegend-ChartLabel-0"]
+    Sleep    0.5s
 
     Mouse Over    xpath=(//*[name()='svg']//*[local-name()='g']//*[local-name()='path'])[12]
     ${hover_memory_warning} =  Get Requested Resources Tooltip Text
     Should Match   ${hover_memory_warning}   Requested resources have surpassed 150%
+    # Move mouse away to clear tooltip
     Mouse Over    xpath=//*[@id="requested-resources-chart-Memory-ChartLegend-ChartLabel-0"]
