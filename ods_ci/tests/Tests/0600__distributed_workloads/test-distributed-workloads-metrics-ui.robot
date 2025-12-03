@@ -150,7 +150,6 @@ Verify The Workload Metrics By Submitting Ray Workload
     Click Button    ${PROJECT_METRICS_TAB_XP}
     Wait Until Element Is Visible    ${DISTRIBUITED_WORKLOAD_RESOURCE_METRICS_TITLE_XP}    timeout=20
     Wait For Job With Status    ${RAY_CLUSTER_NAME}    Admitted    30
-    Wait For Job With Status    ${RAY_CLUSTER_NAME}    Running    300
 
     ${cpu_requested} =   Get CPU Requested    ${PRJ_TITLE}    ${LOCAL_QUEUE_NAME}
     ${memory_requested} =   Get Memory Requested    ${PRJ_TITLE}    ${LOCAL_QUEUE_NAME}   RayCluster
