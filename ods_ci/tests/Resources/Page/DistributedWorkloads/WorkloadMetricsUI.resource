@@ -226,9 +226,9 @@ Check Distributed Workload Status Page Contents
     Wait Until Element Is Visible  ${WORKLOADS_STATUS_XP}    timeout=20
     Page Should Contain Element    ${REFRESH_INTERVAL_XP}
     Page Should Contain Element    ${STATUS_OVERVIEW_XP}
-    Page Should Contain Element    xpath=//*[@data-testid="dw-status-overview-card"]//*[text()="Select another project or create a workload in the selected project."]
+    Page Should Contain Element    xpath=//*[@data-testid="dw-status-overview-card"]//*[text()="Select another project or create a distributed workload in the selected project."]
     Page Should Contain Element    ${WORKLOADS_STATUS_XP}
-    Page Should Contain Element    xpath=//*[@data-testid="dw-workloads-table-card"]//*[text()="Select another project or create a workload in the selected project."]
+    Page Should Contain Element    xpath=//*[@data-testid="dw-workloads-table-card"]//*[text()="Select another project or create a distributed workload in the selected project."]
 
 Setup Kueue Resources
     [Documentation]    Setup the kueue resources for the project

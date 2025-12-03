@@ -70,8 +70,8 @@ Verify That Not Admin Users Can Access Distributed workload metrics default page
     Create Data Science Project From CLI    ${PRJ_TITLE_NONADMIN}    as_user=${TEST_USER_3.USERNAME}
     Open Distributed Workload Metrics Home Page
     Select Distributed Workload Project By Name    ${PRJ_TITLE_NONADMIN}
-    Wait Until Element Is Visible    xpath=//h4[text()="Configure a queue"]   timeout=20
-    Page Should Contain Element     xpath=//div[text()="To view workload metrics, configure a queue for this project, or select a different project."]
+    Wait Until Element Is Visible    xpath=//h4[text()="Configure the project queue"]   timeout=20
+    Page Should Contain Element     xpath=//div[text()="Configure the queue for this project, or select a different project."]
     # setup Kueue resource for the created project
     Setup Kueue Resources    ${PRJ_TITLE_NONADMIN}    cluster-queue-user    resource-flavor-user    local-queue-user
     Open Distributed Workload Metrics Home Page
