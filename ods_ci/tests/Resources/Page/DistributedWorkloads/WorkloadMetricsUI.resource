@@ -13,7 +13,7 @@ ${PROJECT_METRICS_TAB_XP}=    xpath=//button[@aria-label="Project metrics tab"]
 ${WORKLOAD_STATUS_TAB_XP}=    xpath=//button[@aria-label="Distributed workload status tab"]
 ${STATUS_OVERVIEW_XP}=    xpath=//div[text()='Status overview']
 ${REFRESH_INTERVAL_XP}=    xpath=//div[text()='Refresh interval']
-${WORKLOADS_STATUS_XP}=    xpath=//div[text()='Workloads']
+${WORKLOADS_STATUS_XP}=    xpath=//*[@data-testid="dw-workloads-table-card"]
 ${REFRESH_INTERNAL_MENU_XP}=    xpath=//button[@aria-label="Options menu"]
 @{STATUS_LIST}=    Pending    Inadmissible    Admitted    Running    Evicted    Succeeded    Failed
 @{REFRESH_INTERNAL_LIST}=    15 seconds    30 seconds    1 minute    5 minutes    15 minutes    30 minutes    1 hour    2 hours    1 day
@@ -331,7 +331,7 @@ Check Distributed Worklaod Status Overview
     [Documentation]    checks Distributed Worklaod Status Overview displaying correctly
     [Arguments]    ${job_name}    ${job_status}    ${job_status_message}
     Click Button    ${WORKLOAD_STATUS_TAB_XP}
-    Wait Until Element Is Visible    xpath=//div[text()="Workloads"]    timeout=20
+    Wait Until Element Is Visible    ${WORKLOADS_STATUS_XP}    timeout=20
     Check Expected String Equals    //*[@id="status-overview-ChartLabel-title"]    1 Workload
     Page Should Contain    text=${JOB_STATUS}: 1
     Check Expected String Contains    //td[@data-label="Name"]    ${job_name}
