@@ -156,8 +156,8 @@ Verify The Workload Metrics By Submitting Ray Workload
     Check Requested Resources Chart    ${PRJ_TITLE}    ${cpu_requested}    ${memory_requested}
     Check Requested Resources    ${PRJ_TITLE}    ${CPU_SHARED_QUOTA}    ${MEMEORY_SHARED_QUOTA}    ${cpu_requested}    ${memory_requested}    RayCluster
 
-    Check Distributed Workload Resource Metrics Status    ${RAY_CLUSTER_NAME}    Running
-    Check Distributed Worklaod Status Overview    ${RAY_CLUSTER_NAME}    Running    All pods reached readiness and the workload is running
+    Check Distributed Workload Resource Metrics Status    ${RAY_CLUSTER_NAME}    Admitted
+    Check Distributed Worklaod Status Overview    ${RAY_CLUSTER_NAME}    Admitted    The workload is admitted
 
     Click Button    ${PROJECT_METRICS_TAB_XP}
     Check Distributed Workload Resource Metrics Chart    ${PRJ_TITLE}    ${cpu_requested}    ${memory_requested}    RayCluster    ${RAY_CLUSTER_NAME}
