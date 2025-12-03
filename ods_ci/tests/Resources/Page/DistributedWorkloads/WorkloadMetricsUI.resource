@@ -332,7 +332,7 @@ Check Distributed Worklaod Status Overview
     [Arguments]    ${job_name}    ${job_status}    ${job_status_message}
     Click Button    ${WORKLOAD_STATUS_TAB_XP}
     Wait Until Element Is Visible    ${WORKLOADS_STATUS_XP}    timeout=20
-    Check Expected String Equals    //*[@id="status-overview-ChartLabel-title"]    1 Workload
+    Check Expected String Equals    //*[@id="status-overview-ChartLabel-title"]    1Workload metrics
     Page Should Contain    text=${JOB_STATUS}: 1
     Check Expected String Contains    //td[@data-label="Name"]    ${job_name}
     Check Expected String Equals    //td[@data-label="Priority"]    0
