@@ -217,18 +217,18 @@ Check Project Metrics Default Page Contents
     Page Should Contain Element    ${REQUESTED_RESOURCES_TITLE_XP}
     Check Requested Resources    ${project_name}    ${CPU_SHARED_QUOTA}    ${MEMEORY_SHARED_QUOTA}    0    0    Job
     Page Should Contain Element    ${RESOURCES_CONSUMING_TITLE_XP}
-    Page Should Contain Element    xpath=//*[@data-testid="dw-top-consuming-workloads"]//*[text()="No distributed workloads in the selected project are currently consuming resources."]
+    Page Should Contain Element    xpath=//*[@data-testid="dw-top-consuming-workloads"]//*[text()="No workload metrics in the selected project are currently consuming resources."]
     Page Should Contain Element    ${DISTRIBUITED_WORKLOAD_RESOURCE_METRICS_TITLE_XP}
-    Page Should Contain Element    xpath=//*[@data-testid="dw-workload-resource-metrics"]//*[text()="No distributed workloads in the selected project are currently consuming resources."]
+    Page Should Contain Element    xpath=//*[@data-testid="dw-workload-resource-metrics"]//*[text()="No workload metrics in the selected project are currently consuming resources."]
 
 Check Distributed Workload Status Page Contents
     [Documentation]    checks Distributed Workload status Default Page contents exists
     Wait Until Element Is Visible  ${WORKLOADS_STATUS_XP}    timeout=20
     Page Should Contain Element    ${REFRESH_INTERVAL_XP}
     Page Should Contain Element    ${STATUS_OVERVIEW_XP}
-    Page Should Contain Element    xpath=//*[@data-testid="dw-status-overview-card"]//*[text()="Select another project or create a distributed workload in the selected project."]
+    Page Should Contain Element    xpath=//*[@data-testid="dw-status-overview-card"]//*[text()="Select another project or create a workload in the selected project."]
     Page Should Contain Element    ${WORKLOADS_STATUS_XP}
-    Page Should Contain Element    xpath=//*[@data-testid="dw-workloads-table-card"]//*[text()="Select another project or create a distributed workload in the selected project."]
+    Page Should Contain Element    xpath=//*[@data-testid="dw-workloads-table-card"]//*[text()="Select another project or create a workload in the selected project."]
 
 Setup Kueue Resources
     [Documentation]    Setup the kueue resources for the project
@@ -368,7 +368,7 @@ Submit Kueue Workload
 Wait For Job With Status
     [Documentation]    Wait for job status with job name
     [Arguments]    ${job_name}    ${job_status}    ${timeout}
-    Wait Until Element Is Visible    //td[@class='pf-v6-c-table__td' and contains(text(), '${job_name}')]/following-sibling::td[@data-label='Status']/span/span/span[@class='pf-v6-c-label__text'and text()='${job_status}']    timeout=${timeout}
+    Wait Until Element Is Visible    //td[@data-label='Name' and contains(text(), '${job_name}')]/following-sibling::td[@data-label='Status']//span[contains(@class, 'pf-v6-c-label__text') and text()='${job_status}']    timeout=${timeout}
 
 Check Warning Threshold Chart
     [Documentation]    verifies warning threshold of cpu and memory resources

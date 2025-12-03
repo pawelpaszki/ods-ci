@@ -70,8 +70,8 @@ Verify That Not Admin Users Can Access Distributed workload metrics default page
     Create Data Science Project From CLI    ${PRJ_TITLE_NONADMIN}    as_user=${TEST_USER_3.USERNAME}
     Open Distributed Workload Metrics Home Page
     Select Distributed Workload Project By Name    ${PRJ_TITLE_NONADMIN}
-    Wait Until Element Is Visible    xpath=//h4[text()="Configure the project queue"]   timeout=20
-    Page Should Contain Element     xpath=//div[text()="Configure the queue for this project, or select a different project."]
+    Wait Until Element Is Visible    xpath=//h4[text()="Configure a queue"]   timeout=20
+    Page Should Contain Element     xpath=//div[text()="To view workload metrics, configure a queue for this project, or select a different project."]
     # setup Kueue resource for the created project
     Setup Kueue Resources    ${PRJ_TITLE_NONADMIN}    cluster-queue-user    resource-flavor-user    local-queue-user
     Open Distributed Workload Metrics Home Page
@@ -130,7 +130,7 @@ Verify The Workload Metrics By Submitting Kueue Batch Workload
     END
 
     Click Button    ${PROJECT_METRICS_TAB_XP}
-    Wait Until Element Is Visible    xpath=//*[@data-testid="dw-workload-resource-metrics"]//*[text()="No distributed workloads in the selected project are currently consuming resources."]    timeout=60
+    Wait Until Element Is Visible    xpath=//*[@data-testid="dw-workload-resource-metrics"]//*[text()="No workload metrics in the selected project are currently consuming resources."]    timeout=60
     Page Should Not Contain    ${JOB_NAME_QUEUE}
     Page Should Not Contain    Succeeded
     Click Button    ${WORKLOAD_STATUS_TAB_XP}
