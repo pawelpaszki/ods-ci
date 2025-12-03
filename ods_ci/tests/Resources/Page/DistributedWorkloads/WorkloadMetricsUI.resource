@@ -3,6 +3,7 @@ Documentation    Collection of keywords to interact with Distributed Workloads M
 Library    DateTime
 Library    String
 Resource         ../../Common.robot
+Resource         ../Components/Menu.robot
 
 
 *** Variables ***
@@ -33,9 +34,10 @@ ${MEMORY_WARNING_XP}=    //*[@id="requested-resources-chart-Memory-ChartLegend-C
 *** Keywords ***
 Open Distributed Workload Metrics Home Page
     [Documentation]    This will launch to the distributed Workloads Home page
-    Wait Until Page Contains    Distributed workloads    timeout=30
-    Click Link    Distributed workloads
-    Wait For RHODS Dashboard To Load    wait_for_cards=${FALSE}    expected_page=Distributed workloads
+    # The UI has changed - "Distributed workloads" is now called "Workload metrics"
+    # and is nested under "Observe & monitor" in the navigation menu
+    Menu.Navigate To Page    Observe & monitor    Workload metrics
+    Wait For RHODS Dashboard To Load    wait_for_cards=${FALSE}    expected_page=Workload metrics
 
 Select Distributed Workload Project By Name
     [Documentation]    Select the project in distributed workload metrics page by project name

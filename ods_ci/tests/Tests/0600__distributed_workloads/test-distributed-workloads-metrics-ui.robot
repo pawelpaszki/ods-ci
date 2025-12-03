@@ -31,7 +31,7 @@ Verify Workload Metrics Home page Contents
     [Tags]    RHOAIENG-4837
     ...       Sanity    DistributedWorkloads    TrainingRay    WorkloadsOrchestration
     Open Distributed Workload Metrics Home Page
-    Wait For Dashboard Page Title   Distributed workloads
+    Wait For Dashboard Page Title   Workload metrics
     Select Distributed Workload Project By Name    ${PRJ_TITLE}
     Wait Until Element Is Visible    ${DISTRIBUITED_WORKLOAD_METRICS_TEXT_XP}   timeout=20
     Wait Until Element Is Visible    ${PROJECT_METRICS_TAB_XP}   timeout=20
@@ -74,7 +74,7 @@ Verify That Not Admin Users Can Access Distributed workload metrics default page
     Page Should Contain Element     xpath=//div[text()="Configure the queue for this project, or select a different project."]
     # setup Kueue resource for the created project
     Setup Kueue Resources    ${PRJ_TITLE_NONADMIN}    cluster-queue-user    resource-flavor-user    local-queue-user
-    Click Link    Distributed workloads
+    Open Distributed Workload Metrics Home Page
     Select Distributed Workload Project By Name    ${PRJ_TITLE_NONADMIN}
     Check Distributed Workload Status Page Contents
     Check Project Metrics Default Page Contents    ${PRJ_TITLE_NONADMIN}
@@ -140,7 +140,7 @@ Verify The Workload Metrics By Submitting Kueue Batch Workload
 Verify The Workload Metrics By Submitting Ray Workload
     [Documentation]    Monitor the workload metrics status and chart details by submitting Ray workload
     [Tags]    RHOAIENG-5216
-    ...       Tier1    DistributedWorkloads    TrainingRay    WorkloadsOrchestration
+    ...       ppp    DistributedWorkloads    TrainingRay    WorkloadsOrchestration
     Create Ray Cluster Workload   ${PRJ_TITLE}    ${LOCAL_QUEUE_NAME}    ${RAY_CLUSTER_NAME}
     Open Distributed Workload Metrics Home Page
     Select Distributed Workload Project By Name    ${PRJ_TITLE}
