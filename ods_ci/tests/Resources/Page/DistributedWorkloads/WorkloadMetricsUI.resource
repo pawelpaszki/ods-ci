@@ -267,16 +267,12 @@ Cleanup Kueue Resources
 
 Enable Kueue BatchJob Integration
     [Documentation]    Ensures BatchJob framework is enabled in Kueue config for batch/v1 Job support
-    ${result}=    Run Process    oc get kueue.kueue.openshift.io cluster -o jsonpath='{.spec.config.integrations.frameworks}'
-    ...    shell=true
-    ...    stderr=STDOUT
-    IF    "BatchJob" not in """${result.stdout}"""
+    ${rc}    ${output}=    Run And Return Rc And Output    oc get kueue.kueue.openshift.io cluster -o jsonpath='{.spec.config.integrations.frameworks}'
+    IF    "BatchJob" not in """${output}"""
         Log To Console    BatchJob integration not found in Kueue config, adding it...
-        ${patch_result}=    Run Process    oc patch kueue.kueue.openshift.io cluster --type='json' -p='[{"op": "add", "path": "/spec/config/integrations/frameworks/-", "value": "BatchJob"}]'
-        ...    shell=true
-        ...    stderr=STDOUT
-        Log To Console    ${patch_result.stdout}
-        IF    ${patch_result.rc} != 0
+        ${patch_rc}    ${patch_output}=    Run And Return Rc And Output    oc patch kueue.kueue.openshift.io cluster --type='json' -p='[{"op": "add", "path": "/spec/config/integrations/frameworks/-", "value": "BatchJob"}]'
+        Log To Console    ${patch_output}
+        IF    ${patch_rc} != 0
             FAIL    Failed to enable BatchJob integration in Kueue
         END
         # Wait for Kueue controller to pick up the new config
