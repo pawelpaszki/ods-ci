@@ -120,7 +120,7 @@ Verify The Workload Metrics By Submitting Kueue Batch Workload
     Select Refresh Interval    15 seconds
     Check Requested Resources    ${PRJ_TITLE}    ${CPU_SHARED_QUOTA}    ${MEMEORY_SHARED_QUOTA}    0    0    Job
     Check Distributed Workload Resource Metrics Status    ${JOB_NAME_QUEUE}    Succeeded
-    Check Distributed Worklaod Status Overview    ${JOB_NAME_QUEUE}    Succeeded    Finished
+    Check Distributed Worklaod Status Overview    ${JOB_NAME_QUEUE}    Succeeded    Reached expected number of succeeded pods
 
     ${result} =    Run Process  oc delete Job ${JOB_NAME_QUEUE} -n ${PRJ_TITLE}
     ...    shell=true    stderr=STDOUT
