@@ -182,6 +182,8 @@ Verify Requested resources When Multiple Local Queue Exists
     Wait Until Element Is Visible    ${DISTRIBUITED_WORKLOAD_RESOURCE_METRICS_TITLE_XP}    timeout=20
     Wait For Job With Status    ${JOB_NAME_QUEUE}    Admitted    60
     Wait For Job With Status   ${MULTIPLE_JOB_NAME}    Admitted    60
+    # Wait for UI to refresh and show updated resource totals from both LocalQueues
+    Sleep    20s
 
     # verify Requested by all projects requested resources
     ${cpu_requested_1} =   Get CPU Requested    ${PRJ_TITLE}    ${LOCAL_QUEUE_NAME}

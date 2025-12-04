@@ -165,9 +165,9 @@ Get Memory Requested
 Get Requested Resources Tooltip Text
     [Documentation]    retuns tooltip text of requested resources chart
     # Give tooltip time to appear after mouse over
-    Sleep    0.5s
+    Sleep    1s
     # Use longer timeout for tooltip visibility (tooltips can be slow to render)
-    Wait Until Element Is Visible    xpath://*[contains(@style, 'fill: var(--pf-v6-chart-tooltip--Fill')]    timeout=15s
+    Wait Until Element Is Visible    xpath://*[contains(@style, 'fill: var(--pf-v6-chart-tooltip--Fill')]    timeout=20s
     # Add small delay to ensure tooltip is fully rendered
     Sleep    0.3s
     ${tooltip_text} =  Get Text    xpath://*[contains(@style, 'fill: var(--pf-v6-chart-tooltip--Fill')]
