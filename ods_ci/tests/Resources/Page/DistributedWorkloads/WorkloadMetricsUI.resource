@@ -267,10 +267,17 @@ Cleanup Kueue Resources
 
 Enable Kueue BatchJob Integration
     [Documentation]    Ensures BatchJob framework is enabled in Kueue config for batch/v1 Job support
-    ${rc}    ${output}=    Run And Return Rc And Output    oc get kueue.kueue.openshift.io cluster -o jsonpath='{.spec.config.integrations.frameworks}'
+    # Get the Kueue CR name (could be 'cluster' or other name depending on installation)
+    ${rc}    ${kueue_name}=    Run And Return Rc And Output    oc get kueue.kueue.openshift.io -o jsonpath='{.items[0].metadata.name}' 2>/dev/null
+    IF    ${rc} != 0 or """${kueue_name}""" == ""
+        Log To Console    No Kueue CR found, skipping BatchJob integration check
+        RETURN
+    END
+    Log To Console    Found Kueue CR: ${kueue_name}
+    ${rc}    ${output}=    Run And Return Rc And Output    oc get kueue.kueue.openshift.io ${kueue_name} -o jsonpath='{.spec.config.integrations.frameworks}'
     IF    "BatchJob" not in """${output}"""
         Log To Console    BatchJob integration not found in Kueue config, adding it...
-        ${patch_rc}    ${patch_output}=    Run And Return Rc And Output    oc patch kueue.kueue.openshift.io cluster --type='json' -p='[{"op": "add", "path": "/spec/config/integrations/frameworks/-", "value": "BatchJob"}]'
+        ${patch_rc}    ${patch_output}=    Run And Return Rc And Output    oc patch kueue.kueue.openshift.io ${kueue_name} --type='json' -p='[{"op": "add", "path": "/spec/config/integrations/frameworks/-", "value": "BatchJob"}]'
         Log To Console    ${patch_output}
         IF    ${patch_rc} != 0
             FAIL    Failed to enable BatchJob integration in Kueue
