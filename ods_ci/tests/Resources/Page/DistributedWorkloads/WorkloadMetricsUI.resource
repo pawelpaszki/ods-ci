@@ -265,6 +265,26 @@ Cleanup Kueue Resources
         FAIL    Failed to delete kueue resources
     END
 
+Enable Kueue BatchJob Integration
+    [Documentation]    Ensures BatchJob framework is enabled in Kueue config for batch/v1 Job support
+    ${result}=    Run Process    oc get kueue.kueue.openshift.io cluster -o jsonpath='{.spec.config.integrations.frameworks}'
+    ...    shell=true
+    ...    stderr=STDOUT
+    IF    "BatchJob" not in """${result.stdout}"""
+        Log To Console    BatchJob integration not found in Kueue config, adding it...
+        ${patch_result}=    Run Process    oc patch kueue.kueue.openshift.io cluster --type='json' -p='[{"op": "add", "path": "/spec/config/integrations/frameworks/-", "value": "BatchJob"}]'
+        ...    shell=true
+        ...    stderr=STDOUT
+        Log To Console    ${patch_result.stdout}
+        IF    ${patch_result.rc} != 0
+            FAIL    Failed to enable BatchJob integration in Kueue
+        END
+        # Wait for Kueue controller to pick up the new config
+        Sleep    10s
+    ELSE
+        Log To Console    BatchJob integration already enabled in Kueue config
+    END
+
 Check Requested Resources
     [Documentation]    checks requested resource contents
     [Arguments]    ${project_name}   ${cpu_shared_quota}    ${memory_shared_quota}    ${cpu_requested}    ${memory_requested}    ${workload_type}

@@ -99,7 +99,7 @@ Verify The Workload Metrics By Submitting Kueue Batch Workload
     Select Refresh Interval    15 seconds
     Click Button    ${PROJECT_METRICS_TAB_XP}
     Wait Until Element Is Visible    ${DISTRIBUITED_WORKLOAD_RESOURCE_METRICS_TITLE_XP}    timeout=20
-    Wait For Job With Status    ${JOB_NAME_QUEUE}    Running    60
+    Wait For Job With Status    ${JOB_NAME_QUEUE}    Admitted    60
 
     ${cpu_requested} =   Get CPU Requested    ${PRJ_TITLE}    ${LOCAL_QUEUE_NAME}
     ${memory_requested} =   Get Memory Requested    ${PRJ_TITLE}    ${LOCAL_QUEUE_NAME}    Job
@@ -107,15 +107,15 @@ Verify The Workload Metrics By Submitting Kueue Batch Workload
     Check Requested Resources    ${PRJ_TITLE}    ${CPU_SHARED_QUOTA}    ${MEMEORY_SHARED_QUOTA}    ${cpu_requested}    ${memory_requested}    Job
 
 
-    Check Distributed Workload Resource Metrics Status    ${JOB_NAME_QUEUE}    Running
-    Check Distributed Worklaod Status Overview    ${JOB_NAME_QUEUE}    Running    All pods reached readiness and the workload is running
+    Check Distributed Workload Resource Metrics Status    ${JOB_NAME_QUEUE}    Admitted
+    Check Distributed Worklaod Status Overview    ${JOB_NAME_QUEUE}    Admitted    The workload is admitted
 
     Click Button    ${PROJECT_METRICS_TAB_XP}
 
     Check Distributed Workload Resource Metrics Chart    ${PRJ_TITLE}    ${cpu_requested}    ${memory_requested}    Job    ${JOB_NAME_QUEUE}
     Wait For Job With Status    ${JOB_NAME_QUEUE}    Succeeded    180
     Select Refresh Interval    15 seconds
-    Page Should Not Contain Element    xpath=//*[text()="Running"]
+    Page Should Not Contain Element    xpath=//*[text()="Admitted"]
     Page Should Contain Element    xpath=//*[text()="Succeeded"]
     Select Refresh Interval    15 seconds
     Check Requested Resources    ${PRJ_TITLE}    ${CPU_SHARED_QUOTA}    ${MEMEORY_SHARED_QUOTA}    0    0    Job
@@ -180,8 +180,8 @@ Verify Requested resources When Multiple Local Queue Exists
     Select Refresh Interval    15 seconds
     Click Button    ${PROJECT_METRICS_TAB_XP}
     Wait Until Element Is Visible    ${DISTRIBUITED_WORKLOAD_RESOURCE_METRICS_TITLE_XP}    timeout=20
-    Wait For Job With Status    ${JOB_NAME_QUEUE}    Running    60
-    Wait For Job With Status   ${MULTIPLE_JOB_NAME}    Running    60
+    Wait For Job With Status    ${JOB_NAME_QUEUE}    Admitted    60
+    Wait For Job With Status   ${MULTIPLE_JOB_NAME}    Admitted    60
 
     # verify Requested by all projects requested resources
     ${cpu_requested_1} =   Get CPU Requested    ${PRJ_TITLE}    ${LOCAL_QUEUE_NAME}
@@ -236,6 +236,8 @@ Project Suite Setup
     [Documentation]    Suite setup steps for testing Distributed workload Metrics UI
     Set Library Search Order    SeleniumLibrary
     RHOSi Setup
+    # Ensure BatchJob integration is enabled in Kueue for batch/v1 Job support
+    Enable Kueue BatchJob Integration
     Launch Dashboard    ${TEST_USER.USERNAME}    ${TEST_USER.PASSWORD}    ${TEST_USER.AUTH_TYPE}
     ...    ${ODH_DASHBOARD_URL}    ${BROWSER.NAME}    ${BROWSER.OPTIONS}
     Create Data Science Project From CLI    ${PRJ_TITLE}    as_user=${TEST_USER.USERNAME}
