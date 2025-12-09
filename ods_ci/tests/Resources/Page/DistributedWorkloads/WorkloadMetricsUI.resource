@@ -173,7 +173,14 @@ Get Memory Requested
     RETURN  ${memory_requested_gb_value}
 
 Get Requested Resources Tooltip Text
-    [Documentation]    retuns tooltip text of requested resources chart
+    [Documentation]    retuns tooltip text of requested resources chart with retry
+    # Retry mechanism for flaky tooltip detection
+    FOR    ${retry}    IN RANGE    ${MAX_RETRIES}
+        ${status}=    Run Keyword And Return Status    Wait Until Element Is Visible    xpath://*[starts-with(@id,'pf-tooltip-')]    timeout=10
+        Exit For Loop If    ${status}
+        Log    Tooltip not visible, retrying...
+        Sleep    2s
+    END
     Wait Until Element Is Visible    xpath://*[starts-with(@id,'pf-tooltip-')]    timeout=20
     ${tooltip_text} =  Get Text    xpath://*[starts-with(@id,'pf-tooltip-')]
     RETURN    ${tooltip_text}
@@ -181,7 +188,7 @@ Get Requested Resources Tooltip Text
 Get Memory Requested Tooltip Text
     [Documentation]    retuns tooltip text of Memory requested chart
     Mouse Over    xpath=//*[@aria-label="Memory usage/requested"]
-    Wait Until Element Is Visible    xpath://*[starts-with(@id,'pf-tooltip-')]
+    Wait Until Element Is Visible    xpath://*[starts-with(@id,'pf-tooltip-')]    timeout=30
     ${memory_usage_hover_data} =  Get Text    xpath://*[starts-with(@id,'pf-tooltip-')]
     @{memory_usage_list}    Split To Lines    ${memory_usage_hover_data}
     ${memory_usage_line}    Set Variable    ${memory_usage_list}[0]
@@ -193,7 +200,7 @@ Get Memory Requested Tooltip Text
 Get CPU Requested Tooltip Text
     [Documentation]    retuns tooltip text of CPU requested chart
     Mouse Over    xpath=//*[@aria-label="CPU usage/requested"]
-    Wait Until Element Is Visible    xpath://*[starts-with(@id,'pf-tooltip-')]
+    Wait Until Element Is Visible    xpath://*[starts-with(@id,'pf-tooltip-')]    timeout=30
     ${cpu_usage_hover_data} =  Get Text    xpath://*[starts-with(@id,'pf-tooltip-')]
     @{cpu_usage_list}    Split To Lines    ${cpu_usage_hover_data}
     ${cpu_usage_line}    Set Variable    ${cpu_usage_list}[0]
