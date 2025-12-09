@@ -126,15 +126,21 @@ Get Query Value
     RETURN    ${total}
 
 Get CPU Requested
-    [Documentation]    get CPU requested from LocalQueue  flavorsReservation
+    [Documentation]    get CPU requested from LocalQueue flavorsReservation with retry
     [Arguments]    ${project}    ${local_queue_name}
-    ${result}  ${output}=    Run And Return Rc And Output
-    ...    oc get LocalQueue ${local_queue_name} -n ${project} -o=jsonpath='{.status.flavorsReservation[0].resources[?(@.name=="cpu")].total}'
+    # Retry up to 60 seconds waiting for LocalQueue status to be populated
+    FOR    ${retry}    IN RANGE    12
+        ${result}  ${output}=    Run And Return Rc And Output
+        ...    oc get LocalQueue ${local_queue_name} -n ${project} -o=jsonpath='{.status.flavorsReservation[0].resources[?(@.name=="cpu")].total}'
+        Exit For Loop If    "${output}" != ""
+        Log    LocalQueue CPU status not yet populated, retrying in 5 seconds...
+        Sleep    5s
+    END
     # If CPU match millicores regex then convert value to cores, otherwise treat it as cores
     ${cpu_requested_array}=          Get Regexp Matches    ${output}      (\\d+)m      1
     ${cpu_requested_array_length}=   Get Length      ${cpu_requested_array}
     IF    ${cpu_requested_array_length} == 0
-        ${cpu_requested}=    Evaluate    ${output}
+        ${cpu_requested}=    Evaluate    ${output} if "${output}" != "" else 0
     ELSE
         ${cpu_requested_millicores}=     Convert To Number    ${cpu_requested_array}[0]
         ${cpu_requested}=    Evaluate    ${cpu_requested_millicores} / 1000
@@ -142,10 +148,16 @@ Get CPU Requested
     RETURN   ${cpu_requested}
 
 Get Memory Requested
-    [Documentation]    get Memory requested from LocalQueue  flavorsReservation
+    [Documentation]    get Memory requested from LocalQueue flavorsReservation with retry
     [Arguments]    ${project}    ${local_queue_name}    ${workload_type}
-    ${result}  ${output}=    Run And Return Rc And Output
-    ...    oc get LocalQueue ${local_queue_name} -n ${project} -o=jsonpath='{.status.flavorsReservation[0].resources[?(@.name=="memory")].total}'
+    # Retry up to 60 seconds waiting for LocalQueue status to be populated
+    FOR    ${retry}    IN RANGE    12
+        ${result}  ${output}=    Run And Return Rc And Output
+        ...    oc get LocalQueue ${local_queue_name} -n ${project} -o=jsonpath='{.status.flavorsReservation[0].resources[?(@.name=="memory")].total}'
+        Exit For Loop If    "${output}" != ""
+        Log    LocalQueue Memory status not yet populated, retrying in 5 seconds...
+        Sleep    5s
+    END
     IF    "${workload_type}" == "Job"
         ${memory_requested}=    Replace String    ${output}    Mi    ${EMPTY}
         ${memory_requested_num}=    Convert To Number    ${memory_requested}
