@@ -253,13 +253,13 @@ Cleanup Kueue Resources
 Check Requested Resources
     [Documentation]    checks requested resource contents
     [Arguments]    ${project_name}   ${cpu_shared_quota}    ${memory_shared_quota}    ${cpu_requested}    ${memory_requested}    ${workload_type}
-    Check Expected String Equals    //*[@id="requested-resources-chart-CPU-ChartLegend-ChartLabel-0"]    Requested by ${project_name}: ${cpu_requested}
-    Check Expected String Equals    //*[@id="requested-resources-chart-CPU-ChartLegend-ChartLabel-2"]    Total shared quota: ${cpu_shared_quota}
-    Check Expected String Equals    //*[@id="requested-resources-chart-CPU-ChartLegend-ChartLabel-1"]    Requested by all projects: ${cpu_requested}
+    Check Expected String Equals    //*[@id="requested-resources-chart-CPU-ChartLegend-ChartLabel-0"]    Requested by all projects: ${cpu_requested} cores
+    Check Expected String Equals    //*[@id="requested-resources-chart-CPU-ChartLegend-ChartLabel-1"]    Requested by ${project_name}: ${cpu_requested} cores
+    Check Expected String Equals    //*[@id="requested-resources-chart-CPU-ChartLegend-ChartLabel-2"]    Total shared quota: ${cpu_shared_quota} cores
     ${memory_requested_round} =    Evaluate    round( ${memory_requested}, 1)
-    Check Expected String Equals    //*[@id="requested-resources-chart-Memory-ChartLegend-ChartLabel-0"]    Requested by ${project_name}: ${memory_requested_round}
-    Check Expected String Equals    //*[@id="requested-resources-chart-Memory-ChartLegend-ChartLabel-1"]    Requested by all projects: ${memory_requested_round}
-    Check Expected String Equals    //*[@id="requested-resources-chart-Memory-ChartLegend-ChartLabel-2"]   Total shared quota: ${memory_shared_quota}
+    Check Expected String Equals    //*[@id="requested-resources-chart-Memory-ChartLegend-ChartLabel-0"]    Requested by all projects: ${memory_requested_round} GiB
+    Check Expected String Equals    //*[@id="requested-resources-chart-Memory-ChartLegend-ChartLabel-1"]    Requested by ${project_name}: ${memory_requested_round} GiB
+    Check Expected String Equals    //*[@id="requested-resources-chart-Memory-ChartLegend-ChartLabel-2"]   Total shared quota: ${memory_shared_quota} GiB
 
 Check Distributed Workload Resource Metrics Status
     [Documentation]    checks Distributed Workload Resource Metrics Status contents
