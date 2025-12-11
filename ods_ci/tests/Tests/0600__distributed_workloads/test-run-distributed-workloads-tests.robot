@@ -13,7 +13,7 @@ Test Tags         DistributedWorkloads3.11
 Run TestKueueRayCpu ODH test with Python 3.11
     [Documentation]    Run Go ODH test: TestKueueRayCpu
     [Tags]  ODS-2514
-    ...     Tier1
+    ...     ppp
     ...     DistributedWorkloads
     ...     TrainingRay
     ...     WorkloadsOrchestration
@@ -49,7 +49,7 @@ Run TestRayTuneHPOCpu ODH test with Python 3.11
 Run TestRayTuneHPOGpu ODH test with Python 3.11
     [Documentation]    Run Go ODH test: TestMnistRayTuneHpoGpu
     [Tags]  Resources-GPU    NVIDIA-GPUs
-    ...     Tier1
+    ...     ppp
     ...     DistributedWorkloads
     ...     TrainingRay
     ...     WorkloadsOrchestration
@@ -58,7 +58,7 @@ Run TestRayTuneHPOGpu ODH test with Python 3.11
 Run TestKueueCustomRayCudaCpu ODH test with Python 3.11
     [Documentation]    Run Go ODH test: TestKueueCustomRayCudaCpu
     [Tags]  RHOAIENG-10013
-    ...     Tier1
+    ...     ppp
     ...     DistributedWorkloads
     ...     TrainingRay
     ...     WorkloadsOrchestration
@@ -77,7 +77,7 @@ Run TestKueueCustomRayCudaGpu ODH test with Python 3.11
 Run TestKueueCustomRayRocmCpu ODH test with Python 3.11
     [Documentation]    Run Go ODH test: TestKueueCustomRayRocmCpu
     [Tags]  RHOAIENG-12484
-    ...     Tier1
+    ...     ppp
     ...     DistributedWorkloads
     ...     TrainingRay
     ...     WorkloadsOrchestration
