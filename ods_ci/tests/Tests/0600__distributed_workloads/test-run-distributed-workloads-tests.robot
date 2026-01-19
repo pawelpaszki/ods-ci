@@ -87,7 +87,7 @@ Run TestKueueCustomRayRocmGpu ODH test with Python 3.11
     [Documentation]    Run Go ODH test: TestKueueCustomRayRocmGpu
     [Tags]  RHOAIENG-12484
     ...     Resources-GPU    AMD-GPUs    ROCm
-    ...     Tier1
+    ...     ppp
     ...     DistributedWorkloads
     ...     TrainingRay
     ...     WorkloadsOrchestration
