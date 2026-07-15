@@ -41,6 +41,7 @@ Run TestHeterogenousClustersOauth
 *** Keywords ***
 Prepare Codeflare-sdk E2E Test Suite
     [Documentation]    Prepare codeflare-sdk E2E Test Suite
+    Setup Kueue Batch User RoleBinding
     Prepare Codeflare-SDK Test Setup
     RHOSi Setup
 
