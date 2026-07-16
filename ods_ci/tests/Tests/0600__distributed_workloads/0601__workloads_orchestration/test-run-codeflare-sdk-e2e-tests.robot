@@ -13,7 +13,7 @@ Resource          ../../../../tests/Resources/Page/DistributedWorkloads/Distribu
 Run TestRayClusterSDKOauth test with Python 3.11
     [Documentation]    Run Python E2E test: TestRayClusterSDKOauth
     [Tags]
-    ...     Tier1
+    ...     ppp
     ...     DistributedWorkloads
     ...     WorkloadsOrchestration
     ...     Codeflare-sdk
@@ -22,7 +22,7 @@ Run TestRayClusterSDKOauth test with Python 3.11
 Run TestRayLocalInteractiveOauth test with Python 3.11
     [Documentation]    Run Python E2E test: TestRayLocalInteractiveOauth
     [Tags]
-    ...     Tier1
+    ...     ppp
     ...     DistributedWorkloads
     ...     WorkloadsOrchestration
     ...     Codeflare-sdk
