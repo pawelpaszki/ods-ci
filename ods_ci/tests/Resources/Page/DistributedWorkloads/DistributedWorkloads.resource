@@ -87,9 +87,6 @@ Prepare Codeflare-SDK Upgrade Test Setup
     # Setup Kueue RBAC permissions as admin before switching to test user
     Setup Kueue Batch User RoleBinding
 
-    # Create the test namespace as admin
-    Create Test Namespace For Codeflare Test
-
     # Perform oc login with Test User
     Login To OCP Using API    ${TEST_USER.USERNAME}    ${TEST_USER.PASSWORD}
 
