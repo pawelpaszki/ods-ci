@@ -164,7 +164,7 @@ Verify Distributed Workload Metrics Resources By Creating Ray Cluster Workload
     ${PRJ_UPGRADE}=     Set Variable        test-ns-rayupgrade
     ${JOB_NAME}=        Set Variable        mnist
     Run Codeflare-SDK Test
-    ...    upgrade
+    ...    prepre
     ...    raycluster_sdk_upgrade_test.py::TestMNISTRayClusterUp
     ...    3.11
     ...    ${RAY_CUDA_IMAGE_3.11}
