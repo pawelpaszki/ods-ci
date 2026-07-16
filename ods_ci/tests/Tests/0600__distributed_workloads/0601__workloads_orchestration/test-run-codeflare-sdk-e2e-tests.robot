@@ -31,7 +31,7 @@ Run TestRayLocalInteractiveOauth test with Python 3.11
 Run TestHeterogenousClustersOauth
     [Documentation]    Run Python E2E test: TestHeterogenousClustersOauth (workaround for 2.15)
     [Tags]
-    ...     Tier1
+    ...     deprecatedTest
     ...     DistributedWorkloads
     ...     WorkloadsOrchestration
     ...     HeterogeneousCluster
